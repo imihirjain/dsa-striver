@@ -69,18 +69,23 @@ Node* insertPos(Node* head, int el, int k)
     if(head==NULL)
     {
         if(k==1) return new Node(el);
-        else return head;
+        else return NULL;
     }
-    if(k==1) return new Node(el, head);
+    if(k==1)
+    {
+        Node* temp=new Node(el, head);
+        return head;
+    }
 
-    Node* temp=head; 
     int cnt=0;
+    Node* temp=head; 
     while(temp!=NULL)
     {
         cnt++;
         if(cnt==k-1)
         {
-            Node* newNode=new Node(el,temp->next);
+            Node* newNode=new Node(el);
+            newNode->next=temp->next;
             temp->next=newNode;
             break;
         }
